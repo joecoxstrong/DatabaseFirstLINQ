@@ -19,8 +19,8 @@ namespace DatabaseFirstLINQ
             //ProblemTwo();
             //ProblemThree();
             //ProblemFour();
-            ProblemFive();
-            //ProblemSix();
+            //ProblemFive();
+            ProblemSix();
             //ProblemSeven();
             //ProblemEight();
             //ProblemNine();
@@ -102,7 +102,14 @@ Console.WriteLine(product.Name);
         {
             // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
             // Then print each user's email and registration date to the console.
-
+            var users = _context.Users;
+            var maxDate = new DateTime(2018, 01, 01);
+            var minDate = new DateTime(2016, 12, 31);
+            var betweenReg = users.Where(u => u.RegistrationDate < maxDate && u.RegistrationDate > minDate);
+            foreach (var user in betweenReg)
+            {
+                Console.WriteLine(user.Email + (" ") + user.RegistrationDate);
+            }
         }
 
         // <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
