@@ -24,7 +24,7 @@ namespace DatabaseFirstLINQ
             //ProblemSeven();
             //ProblemEight();
             //ProblemNine();
-            //ProblemTen();
+            ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
@@ -34,7 +34,7 @@ namespace DatabaseFirstLINQ
             //ProblemSeventeen();
             //ProblemEighteen();
             //ProblemNineteen();
-            ProblemTwenty();
+            //ProblemTwenty();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -149,7 +149,12 @@ Console.WriteLine(product.Name);
         {
             // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
             // Then print the user's email as well as the product's name, price, and quantity to the console.
-            
+            var employeeUsers = _context.UserRoles.Include(ur => ur.Role).Include(ur => ur.User).Where(ur => ur.Role.RoleName == "Employee").Select(ur => ur.User.Id);
+            var customerCart = _context.ShoppingCarts.Include(cu => cu.Product).Include(cu => cu.User).Where(cu => employeeUsers.Contains(cu.UserId));
+            foreach (ShoppingCart cart in customerCart)
+            {
+                Console.WriteLine($"Email: {cart.User.Email} Product: {cart.Product.Name} Price: {cart.Product.Price} Quantity: {cart.Quantity}");
+            }
 
 
 
