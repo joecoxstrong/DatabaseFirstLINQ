@@ -24,7 +24,7 @@ namespace DatabaseFirstLINQ
             //ProblemSeven();
             //ProblemEight();
             //ProblemNine();
-            ProblemTen();
+            //ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
@@ -35,6 +35,7 @@ namespace DatabaseFirstLINQ
             //ProblemEighteen();
             //ProblemNineteen();
             //ProblemTwenty();
+            BonusOne();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -294,12 +295,37 @@ Console.WriteLine(product.Name);
             // Prompt the user to enter in an email and password through the console.
             // Take the email and password and check if the there is a person that matches that combination.
             // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+            Console.WriteLine("Enter your email: ");
+            string userEmail = Console.ReadLine();
+            Console.WriteLine("Enter your password: ");
+            string userPassword = Console.ReadLine();
+            foreach (User user in _context.Users)
+                if (user.Email == userEmail && user.Password == userPassword)
+                    Console.WriteLine("Signed in!");
+                else
+                    Console.WriteLine("Invalid email or password.");
+            
+
         }
 
         private void BonusTwo()
         {
             // Write a query that finds the total of every users shopping cart products using LINQ.
             // Display the total of each users shopping cart as well as the total of the toals to the console.
+            //var cartSum = _context.ShoppingCarts.Include(cs => cs.Product).Select(cs => cs.Product.Price).Sum();
+            //foreach (ShoppingCart product in cartSum)
+            //{
+
+            //    Console.WriteLine($"The total for the shopping cart is ${cartSum}");
+            //}
+            // Type your username and press enter
+            Console.WriteLine("Enter username:");
+
+            // Create a string variable and get user input from the keyboard and store it in the variable
+            string userName = Console.ReadLine();
+
+            // Print the value of the variable (userName), which will display the input value
+            Console.WriteLine("Username is: " + userName);
         }
 
         // BIG ONE
